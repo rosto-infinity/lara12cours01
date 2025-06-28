@@ -4,7 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import Button from '@/components/ui/button/Button.vue';
-import { computed } from 'vue'
+
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -25,7 +25,7 @@ const page = usePage();
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
           
                 <div class="bg-green-100 text-green-600 p-2 rounded-xl"
-                v-if="page.props.flash.success" >
+                v-if="page.props.flash?.success" >
                  {{ page.props.flash.success }}
                 </div>
            

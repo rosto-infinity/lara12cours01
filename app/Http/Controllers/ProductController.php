@@ -43,6 +43,6 @@ class ProductController extends Controller
     ]);
 
     Product::create($data);
-    return redirect()->route('products.index')->with('success','Products Create with successefully');
+    return redirect()->route('products.index')->with('success','Products Create with successfully');
    }
 }
