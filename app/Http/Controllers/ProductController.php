@@ -61,7 +61,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Affiche le formulaire d'édition
+     * -Affiche le formulaire d'édition
      */
     public function edit(Product $product)
     {
