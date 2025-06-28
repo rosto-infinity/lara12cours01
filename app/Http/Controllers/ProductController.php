@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     /**
-     * Affiche la liste des produits (avec pagination)
+     * -Affiche la liste des produits (avec pagination)
      */
     public function index()
     {
