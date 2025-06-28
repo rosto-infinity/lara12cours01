@@ -31,7 +31,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Enregistre un nouveau produit (avec transaction)
+     * -Enregistre un nouveau produit (avec transaction)
      */
     public function store(Request $request)
     {
