@@ -82,8 +82,7 @@ const flash = computed<FlashMessage>(() => page.props.flash as FlashMessage);
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <!-- Message flash typé -->
-
+        <!-- -Message flash typé -->
             <Alert v-if="flash.success" class="bg-green-100 text-green-600">
                 <Rocket class="h-4 w-4" />
                 <AlertTitle>Notification</AlertTitle>
