@@ -55,7 +55,7 @@ interface props {
 const props = defineProps<props>()
 
 /**
- * Configuration du fil d'Ariane
+ * -Configuration du fil d'Ariane
  * @type {BreadcrumbItem[]}
  */
 const breadcrumbs: BreadcrumbItem[] = [
