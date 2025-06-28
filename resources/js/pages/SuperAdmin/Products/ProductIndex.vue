@@ -8,13 +8,8 @@
  * - Styles cohérents pour les cartes de stats
  */
 
-import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
-import { Head, Link, usePage, useForm } from '@inertiajs/vue3';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Button from '@/components/ui/button/Button.vue';
-import { computed } from 'vue';
-import { Rocket, PencilLine, Trash, Box, Coins, Tags } from 'lucide-vue-next'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
     Table,
     TableBody,
@@ -23,7 +18,12 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from '@/components/ui/table'
+} from '@/components/ui/table';
+import AppLayout from '@/layouts/AppLayout.vue';
+import { type BreadcrumbItem } from '@/types';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Box, Coins,CirclePlus, Eye, PencilLine, Rocket, Tags, Trash } from 'lucide-vue-next';
+import { computed } from 'vue';
 
 // ===================== TYPAGE ====================
 interface FlashMessage {
@@ -99,10 +99,13 @@ const handleDelete = (productId: number) => {
             <div class="flex justify-end">
                 <Link href="/products/create" prefetch>
                     <Button class="gap-2">
-                        <PencilLine class="w-4 h-4" />
+                        <CirclePlus class="w-4 h-4" />
                         Créer un produit
                     </Button>
                 </Link>
+
+
+                
             </div>
 
             <!-- Tableau des produits -->
@@ -110,7 +113,7 @@ const handleDelete = (productId: number) => {
                 <Table>
                     <TableCaption>Liste de vos produits récents</TableCaption>
                     <TableHeader>
-                        <TableRow class="text-black font-bold bg-gray-100">
+                        <TableRow class="text-black font-bold ">
                             <TableHead>#ID</TableHead>
                             <TableHead>Nom</TableHead>
                             <TableHead>Prix</TableHead>
@@ -125,6 +128,16 @@ const handleDelete = (productId: number) => {
                             <TableCell>{{ product.price }} CFA</TableCell>
                             <TableCell class="max-w-[200px] truncate">{{ product.description }}</TableCell>
                             <TableCell class="flex justify-end space-x-2">
+                                 
+                                    <Link
+                                        :href="`/products/${product.id}`"
+                                        class="inline-flex items-center px-2 py-1 text-blue-600 hover:underline"
+                                        title="Afficher"
+                                    >
+                                        <Eye class="w-5 h-5 mr-1" />
+                                        Afficher
+                                    </Link>
+                                
                                 <Link :href="route('products.edit', product.id)" class="flex items-center text-green-500 hover:text-green-700 transition-colors">
                                     <PencilLine class="w-4 h-4 mr-1" /> Éditer
                                 </Link>
