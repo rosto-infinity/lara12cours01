@@ -89,7 +89,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Supprime un produit (avec gestion des erreurs)
+     * -Supprime un produit (avec gestion des erreurs)
      */
     public function destroy(Product $product)
     {
