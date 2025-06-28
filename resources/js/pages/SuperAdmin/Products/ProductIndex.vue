@@ -66,7 +66,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 /**
- * Gestion des messages flash
+ * -Gestion des messages flash
  * @computed
  */
 const page = usePage();
