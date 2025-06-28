@@ -51,7 +51,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Affiche un produit spécifique
+     * -Affiche un produit spécifique
      */
     public function show(Product $product)
     {
