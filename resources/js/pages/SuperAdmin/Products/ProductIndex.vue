@@ -1,4 +1,21 @@
 <script setup lang="ts">
+/**
+ * Composant ProductList - Affiche la liste des produits avec gestion CRUD
+ * 
+ * Fonctionnalités :
+ * - Affichage tabulaire des produits
+ * - Messages flash (succès/erreur)
+ * - Actions : Édition/Suppression
+ * - Responsive design (Tailwind CSS)
+ * 
+ * Technologies :
+ * - Vue 3 + Composition API
+ * - TypeScript
+ * - InertiaJS (routing)
+ * - ShadCN/ui (composants stylisés)
+ * - Lucide (icônes)
+ */
+
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/vue3';
@@ -16,6 +33,8 @@ import {
     TableRow,
 } from '@/components/ui/table'
 
+
+// ==================== TYPAGE ====================
 interface FlashMessage {
     success?: string;
     error?: string;
@@ -31,8 +50,14 @@ interface Product {
 interface props {
     products: Product[];
 }
+
+// ==================== PROPS & DATA ====================
 const props = defineProps<props>()
 
+/**
+ * Configuration du fil d'Ariane
+ * @type {BreadcrumbItem[]}
+ */
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Products List',
@@ -40,6 +65,10 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+/**
+ * Gestion des messages flash
+ * @computed
+ */
 const page = usePage();
 const flash = computed<FlashMessage>(() => page.props.flash as FlashMessage);
 
@@ -48,7 +77,7 @@ const flash = computed<FlashMessage>(() => page.props.flash as FlashMessage);
 </script>
 
 <template>
-
+<!-- Métadonnées SEO -->
     <Head title="Product List" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
@@ -90,6 +119,8 @@ const flash = computed<FlashMessage>(() => page.props.flash as FlashMessage);
             <div
                 class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border md:min-h-min">
                 <div>
+
+            <!-- Tableau des produits -->
                     <Table>
                         <TableCaption>A list of your recent products.</TableCaption>
                         <TableHeader>
