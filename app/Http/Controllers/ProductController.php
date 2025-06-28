@@ -12,15 +12,18 @@ class ProductController extends Controller
     /**
      * -Affiche la liste des produits (avec pagination)
      */
-    public function index()
-    {
-        $products = Product::latest()->get();
-            
-
-        return Inertia::render('SuperAdmin/Products/ProductIndex', [
-            'products' => $products,  
-        ]);
-    }
+   public function index()
+{
+    $products = Product::latest()->get();
+    
+    return Inertia::render('SuperAdmin/Products/ProductIndex', [
+        'products' => $products,
+        'metadata' => [
+            'count' => $products->count(), // Utilisation de la collection déjà chargée
+             'totalValue' => $products->sum('price')
+        ]
+    ]);
+}
 
     /**
      * -Affiche le formulaire de création

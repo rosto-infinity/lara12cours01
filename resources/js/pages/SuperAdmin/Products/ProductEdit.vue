@@ -11,24 +11,35 @@ import { useForm } from '@inertiajs/vue3'
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Create Product',
-        href: '/products/create',
+        title: 'Edit a Product',
+        href: '',
     },
     
 ];
+
+interface Product {
+    id: number,
+    name: string,
+    price: number,
+    description: string,
+}
+
+const props = defineProps<{
+  product: Product
+}>()
 const form = useForm({
-  name: '' ,
-  price:'' ,
-  description: '',
+  name: props.product.name ,
+  price:props.product.price,
+  description: props.product.description,
 })
 
 const handleSubmit = () =>{
-    form.post(route('products.store'))
+    form.patch(route('products.update',props.product.id))
 }
 </script>
 
 <template>
-    <Head title="Create a Product" />
+    <Head title="Update a Product" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
@@ -56,7 +67,7 @@ const handleSubmit = () =>{
 
                     </div>
 
-                    <Button :disabled="form.processing"> Add product</Button>
+                    <Button :disabled="form.processing"> Update product</Button>
                 </form>
             </div>
         </div>
