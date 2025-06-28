@@ -23,7 +23,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Affiche le formulaire de création
+     * -Affiche le formulaire de création
      */
     public function create()
     {
