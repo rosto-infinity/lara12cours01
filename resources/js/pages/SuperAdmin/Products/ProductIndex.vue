@@ -51,7 +51,7 @@ interface props {
     products: Product[];
 }
 
-// ==================== PROPS & DATA ====================
+// ==================== -PROPS & DATA ====================
 const props = defineProps<props>()
 
 /**
