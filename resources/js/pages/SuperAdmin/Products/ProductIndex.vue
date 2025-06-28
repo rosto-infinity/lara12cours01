@@ -34,7 +34,7 @@ import {
 } from '@/components/ui/table'
 
 
-// ==================== TYPAGE ====================
+// ===================== TYPAGE ====================
 interface FlashMessage {
     success?: string;
     error?: string;
