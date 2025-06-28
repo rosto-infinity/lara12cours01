@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified','role:superadmin'])->group(function () {
         Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
         Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
         Route::patch('/products/update/{id}', [ProductController::class, 'update'])->name('products.update');
-        Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
+        Route::delete('/products/delete/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 
 require __DIR__.'/settings.php';
