@@ -71,7 +71,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Met à jour un produit existant
+     * -Met à jour un produit existant
      */
     public function update(Request $request, Product $product)
     {
