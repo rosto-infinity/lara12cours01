@@ -77,7 +77,7 @@ const flash = computed<FlashMessage>(() => page.props.flash as FlashMessage);
 </script>
 
 <template>
-<!-- Métadonnées SEO -->
+<!-- -Métadonnées SEO -->
     <Head title="Product List" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
