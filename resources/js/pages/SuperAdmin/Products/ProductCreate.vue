@@ -4,7 +4,7 @@ import Input from '@/components/ui/input/Input.vue';
 import Label from '@/components/ui/label/Label.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 import { useForm } from '@inertiajs/vue3'
 
@@ -34,7 +34,11 @@ const handleSubmit = () =>{
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
             
             <div class="relative min-h-[100vh] flex-1 p-7 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border md:min-h-min">
+                <Link :href="route('products.index')" prefetch class="flex items-center mb-4">
+                    <Button class="bg-gray-400 mb-4"> Retour</Button>
+                </Link> 
                 <form @submit.prevent="handleSubmit" class="w-6/12 mx-auto space-y-4">
+                   
                     
                     <div class="space-y-2">
                         <Label for="name"> Name</Label>
@@ -55,6 +59,7 @@ const handleSubmit = () =>{
                         <div class="text-red-400"  v-if="form.errors.description">{{ form.errors.description }}</div>
 
                     </div>
+                    
 
                     <Button :disabled="form.processing"> Add product</Button>
                 </form>

@@ -1,9 +1,17 @@
 <?php
 
-use App\Http\Controllers\ProductController;
 use Inertia\Inertia;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\ProductController;
+
+
+// Route::get('/test-pdf', function() {
+//     $product = Product::first();
+//     return view('SuperAdmin.Products.PdfProduct', compact('product'));
+// });
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -23,14 +31,24 @@ Route::middleware(['auth', 'verified','role:superadmin'])->group(function () {
         Route::get('/superadmin/system',[TestController::class,'superadmin'])->name('superadmin');
 
         //Products
-        Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-        Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-        Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
-        Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
-        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-        Route::patch('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-        Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+       Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+        Route::get('/download-all', [ProductController::class, 'downloadAll']) ->name('downloadAll');
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/excel', [ProductController::class, 'excel'])->name('excel');
+        Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::post('/', [ProductController::class, 'store'])->name('store');
+        Route::get('{product}/pdf', [ProductController::class, 'download'])->name('download');
+        Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+        Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
+        Route::patch('/{product}', [ProductController::class, 'update'])->name('update');
+        Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
+     });
+
 });
+
+// Route::get('/products/download-all', [ProductController::class, 'downloadAll'])
+//     ->name('products.downloadAll')
+//     ->middleware(['auth', 'verified', 'role:superadmin']);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

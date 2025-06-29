@@ -7,7 +7,7 @@
  * - Meilleure organisation des imports
  * - Styles cohérents pour les cartes de stats
  */
-import { Download } from 'lucide-vue-next';
+
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Button from '@/components/ui/button/Button.vue';
 import {
@@ -95,25 +95,18 @@ const handleDelete = (productId: number) => {
                 </div>
             </div>
 
-             <!-- Bouton de création + Téléchargement PDF -->
-    <div class="flex justify-end gap-4">
-        <a :href="route('products.downloadAll')"  class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-green-700 transition-colors">
-            <Download class="w-5 h-5" />
-            Exporter tous les produits (PDF)
-        </a>
+            <!-- Bouton de création -->
+            <div class="flex justify-end">
+                <Link href="/products/create" prefetch>
+                    <Button class="gap-2">
+                        <CirclePlus class="w-4 h-4" />
+                        Créer un produit
+                    </Button>
+                </Link>
 
-        <a :href="route('products.excel')"  class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded hover:bg-green-700 transition-colors">
-            <Download class="w-5 h-5" />
-            Exporter tous les produits (Excel)
-        </a>
 
-        <Link :href="route('products.create')" prefetch>
-            <Button class="gap-2">
-                <CirclePlus class="w-4 h-4" />
-                Créer un produit
-            </Button>
-        </Link>
-    </div>
+                
+            </div>
 
             <!-- Tableau des produits -->
             <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border md:min-h-min">
