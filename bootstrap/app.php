@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
          $middleware->alias([
             "role" => RoleMiddleware::class,
-            'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+            //  'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         ]);
 
         $middleware->web(append: [
