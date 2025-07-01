@@ -34,7 +34,11 @@ Route::middleware(['auth', 'verified','role:superadmin'])->group(function () {
        Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
         Route::get('/download-all', [ProductController::class, 'downloadAll']) ->name('downloadAll');
         Route::get('/', [ProductController::class, 'index'])->name('index');
+
+        Route::post('/import', [ProductController::class, 'indexExcelData'])->name('import.excel.data');
+
         Route::get('/excel', [ProductController::class, 'excel'])->name('excel');
+
         Route::get('/create', [ProductController::class, 'create'])->name('create');
         Route::post('/', [ProductController::class, 'store'])->name('store');
         Route::get('{product}/pdf', [ProductController::class, 'download'])->name('download');

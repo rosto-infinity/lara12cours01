@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ProductExport;
 use Inertia\Inertia;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Exports\ProductExport;
+use App\Imports\ProductsImport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class ProductController extends Controller
 {
     // Constantes pour la pagination
-    private const PER_PAGE = 15;
+   
 
     public function index()
     {
@@ -28,6 +30,37 @@ class ProductController extends Controller
             ]
         ]);
     }
+
+//  public function indexExcelData(Request $request)
+// {
+//     $request->validate([
+//         'import_file' => 'required|file|mimes:xlsx,xls,csv|max:2048'
+//     ]);
+
+//     $import = new ProductsImport;
+//     Excel::import($import, $request->file('import_file'));
+    
+//     return back()->with('success', 'Fichier importé avec succès!');
+// }
+
+public function indexExcelData(Request $request)
+{
+    $request->validate([
+        'import_file' => 'required|file|mimes:xlsx,xls,csv|max:2048'
+    ]);
+
+    try {
+        $import = new ProductsImport;
+        Excel::import($import, $request->file('import_file'));
+        return back()->with('success', 'Importation réussie !');
+
+    } catch (ValidationException $e) {
+        return back()
+               ->withErrors($e->validator->errors()->toArray())
+               ->with('error', 'Erreurs lors de l\'importation');
+    }
+}
+
 
     public function create()
     {
